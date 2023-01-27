@@ -1,0 +1,49 @@
+<form onsubmit="submitForm(event)">
+    <p>Which of the following languages do you speak</p>
+    <input type="checkbox" name="ar" /><span>Arabic</span><br>
+    <input type="checkbox" name="en" /><span>English</span><br>
+    <input type="checkbox" name="fr" /><span>French</span><br>
+    <input type="checkbox" name="jp" /><span>Japanese</span><br>
+    <button >Send</button>
+</form>
+<script>
+    // this function will be callled in the form submit action
+    function submitForm(event) {
+        // we prevent the default form action to manipulate the data
+		event.preventDefault();
+        // in order for us to compine multiple answears in one field we can use JSON Object
+        // which can be refered to in other programming lanugaes by Dictionaries
+        languages = {
+            ar: event.target.elements.ar.checked,
+            en: event.target.elements.en.checked,
+            fr: event.target.elements.fr.checked,
+            jp: event.target.elements.jp.checked
+        }
+        // instead of console log you can send it to your API.
+        console.log(languages)
+    } 
+
+    /*
+        PS:
+        Worth mentioning here that we can use Array instead of json object
+        and we can use PHP instead of JavaScript
+        and here are few lines that represent's a PHP version if 
+        we don't want to use JavaScript here.
+
+        <?php
+        $ar = $_GET["ar"];
+        $en = $_GET["en"];
+        $fr = $_GET["fr"];
+        $jp = $_GET["jp"];
+        $languages = array( 
+        "ar" => $ar, 
+        "en" => $en, 
+        "fr" => $fr, 
+        "jp" => $jp
+        ); 
+        $languagesJSON=json_encode($languages);
+        print($languagesJSON);
+        ?>
+        
+    */
+</script>
