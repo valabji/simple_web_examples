@@ -1,0 +1,48 @@
+<script>
+    // this list can be fetched from Databse or even set manually within the script
+    let list = [
+        { category: 1, value: 1, label: "Cat 1 - Item 1" },
+        { category: 1, value: 2, label: "Cat 1 - Item 2" },
+        { category: 2, value: 3, label: "Cat 2 - Item 1" },
+        { category: 2, value: 4, label: "Cat 2 - Item 2" },
+        { category: 3, value: 5, label: "Cat 3 - Item 1" }
+    ]
+    // function below fill the items dropdown with data based on the selected category
+    // and will be fired automatically with each update 
+    function changeSubItems(category) {
+        // select items drop down
+        let sub = document.getElementById("sub");
+        // empty current items
+        sub.innerHTML = ""
+        // loop through the list
+        list.forEach(item => {
+            // if list item's category is same as the category selected
+            if (item.category == category){
+                // create new option
+                let opt = document.createElement("option");
+                // with the value from the item
+                opt.value = item.value;
+                // and label from the list item
+                opt.text = item.label;
+                // then add this newly created option to the dropdown
+                sub.add(opt);
+            }
+        });
+    }
+
+    // this event fill the items dropdown with value after the DOM loaded,
+    // since it can't be updated before that
+    document.addEventListener('DOMContentLoaded', (event) => {
+        changeSubItems(1)
+    });
+
+</script>
+
+<select onchange="changeSubItems(this.value)">
+    <option value="1" selected>Category 1</option>
+    <option value="2">Category 2</option>
+    <option value="3">Category 3</option>
+</select>
+
+<select id="sub">
+</select>
